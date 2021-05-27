@@ -18,6 +18,17 @@
             </div>
             <audio src="music/Muqabla.mp3" alt=""></audio>
 
+            <!-- Progress Bar -->
+            <div class="progress_bar" id="progress_container">
+                <div class="progress_duration">
+                    <div id="current_time">0:00</div>
+                    <div id="duration">2:56</div>
+                </div>
+                <div class="progress_div" id="progress_div">
+                    <div class="progress" id="progress"></div>
+                </div>
+            </div>
+
             <div class="music_controller">
                 <i class="fas fa-backward" id="prev" title="Previous"></i>
                 <i class="fas fa-play" id="play" title="Play"></i>
@@ -34,6 +45,11 @@
     const artist =document.getElementById("artist");
     const prev =document.getElementById("prev");
     const next =document.getElementById("next");
+
+    let progress = document.getElementById("progress");
+    let total_duration = document.getElementById("duration");
+    let current_time = document.getElementById("current_time");
+    const progress_div=document.getElementById("progress_div");
 
     const songs=[{
         name:"Muqabla",
@@ -58,7 +74,7 @@
 ];
 
     let isPlaying= false;
-    
+
     const playMusic = ()=>{
         isPlaying= true;
         music.play();
@@ -101,6 +117,45 @@
         loadSong(songs[songsIndex]);
         playMusic();
     }
+
+    music.addEventListener("timeupdate",(event)=>{
+        // console.log(event);
+        const {currentTime,duration}=event.srcElement;
+        let progress_time = (currentTime/duration)*100;
+        progress.style.width=`${progress_time}%`;
+
+        // duration update code
+        let min_duration = Math.floor(duration/60);
+        let sec_duration = Math.floor(duration%60);
+
+        let t_duration = `${min_duration}:${sec_duration}`;
+        if(duration){
+            total_duration.textContent=`${t_duration}`;
+        }
+
+        // current duration update code
+
+        let min_currentTime = Math.floor(currentTime/60);
+        let sec_currentTime = Math.floor(currentTime%60);
+
+        if(sec_currentTime<10){
+            sec_currentTime = `0${sec_currentTime}`;
+        }
+        let t_currentTime = `${min_currentTime}:${sec_currentTime}`;
+        current_time.textContent=`${t_currentTime}`;
+    })
+
+    // click on progress bar
+    progress_div.addEventListener("click",(event)=>{
+        console.log(event);
+        const {duration}=music;
+        let move_progress = (event.offsetX / event.srcElement.clientWidth)*duration;
+        console.log(move_progress);
+        music.currentTime=move_progress;
+    });
+
+    // if music end call next song func
+    music.addEventListener("ended",nextSong);
 
     next.addEventListener("click",nextSong);
     prev.addEventListener("click",prevSong);

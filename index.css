@@ -60,7 +60,7 @@ img{
     justify-content: space-between;
     align-items: center;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 5px;
 }
 .music_controller>#play{
     width: 50px;
@@ -87,4 +87,45 @@ img{
 @keyframes rotate{
     from{transform: rotate(0deg);}
     to{transform: rotate(360deg);}
+}
+#progress_container{
+    width: 100%;
+    height: auto;
+    padding: 10px 0px;
+    margin-top: 10px;
+}
+#progress_div{
+    width: 100%;
+    height: 5px;
+    border-radius: 4rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07),0 2px 4px rgba(0,0,0,0.07)
+    0 4px 8px rgba(0,0,0,0.07) 0 8px 16px rgba(0,0,0,0.07);
+    position: relative;
+    margin-top: 5px;
+    /* transition: width 1s linear;
+    -moz-transition: all 1s linear;
+    -o-transition: width 1s linear; */
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: rgba(0,0,0,0.4);
+}
+#progress{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    border-radius: 4rem;
+    background-color: royalblue;
+    /* transition: width 1s linear;
+    -moz-transition: width 1s linear;
+    -o-transition: width 1s linear; */
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.progress_duration{
+    display: flex;
+    justify-content: space-between;
 }
