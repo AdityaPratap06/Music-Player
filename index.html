@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div id="Main">
+        <div id="music">
+            <h2 id="title">Muqabla</h2>
+            <h3 id="artist">Yash Narvekar</h3>
+            <div id="image">
+                <img src="images/Muqabla.jpg" alt="">
+            </div>
+            <audio src="music/Muqabla.mp3" alt=""></audio>
+
+            <div class="music_controller">
+                <i class="fas fa-backward" id="prev" title="Previous"></i>
+                <i class="fas fa-play" id="play" title="Play"></i>
+                <i class="fas fa-forward" id="next" title="next"></i>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const music=document.querySelector("audio");
+    const img=document.querySelector("img");
+    const play=document.getElementById("play");
+    const title=document.getElementById("title");
+    const artist =document.getElementById("artist");
+    const prev =document.getElementById("prev");
+    const next =document.getElementById("next");
+
+    const songs=[{
+        name:"Muqabla",
+        title:"Muqabla",
+        artist:"Yash Narvekar",
+    },
+    {
+        name:"Shukriya",
+        title:"Shukriya",
+        artist:"B Praak",
+    },
+    {
+        name:"Thodi Jagah",
+        title:"Thodi Jagah",
+        artist:"Arijit Singh",
+    },
+    {
+        name:"Yaara Teri Yaari",
+        title:"Yaara Teri Yaari",
+        artist:"Vdj Royal",
+    }
+];
+
+    let isPlaying= false;
+    
+    const playMusic = ()=>{
+        isPlaying= true;
+        music.play();
+        play.classList.replace("fa-play","fa-pause");
+        img.classList.add("anime");
+    };
+    const pauseMusic = ()=>{
+        isPlaying= false;
+        music.pause();
+        play.classList.replace("fa-pause","fa-play");
+        img.classList.remove("anime");
+    };
+
+    play.addEventListener("click", ()=>{
+        if(isPlaying){
+            pauseMusic();
+        }
+        else{
+            playMusic();
+        }
+    });
+
+    const loadSong=(songs)=>{
+        title.textContent =songs.title;
+        artist.textContent =songs.artist;
+        music.src="music/"+songs.name+".mp3";
+        img.src="images/"+songs.name+".jpg";
+    };
+    // loadSong(songs[2]);
+
+    songsIndex= 0;
+
+    const nextSong = () =>{
+        songsIndex = (songsIndex + 1)%songs.length;
+        loadSong(songs[songsIndex]);
+        playMusic();
+    };
+    const prevSong = () =>{
+        songsIndex = (songsIndex - 1 + songs.length)%songs.length;
+        loadSong(songs[songsIndex]);
+        playMusic();
+    }
+
+    next.addEventListener("click",nextSong);
+    prev.addEventListener("click",prevSong);
+
+</script>
+</html>

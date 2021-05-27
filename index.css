@@ -1,0 +1,90 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+#Main{
+    width: 100%;
+    height: 100%;
+    background-color: #f1f1f1;
+    display: grid;
+    place-items: center;
+}
+#music{
+    width: 300px;
+    height: 500px;
+    /* border: 2px solid black; */
+    background-color: #ffffff;
+    border-radius: 10px;
+    /* box-shadow: 0 2; */
+    padding: 20px;
+    text-align: center;
+}
+#music>#title{
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+    color: rgba(59, 53, 57, 0.959) ;
+    font-size: 30px;
+    font-weight: 500;
+    /* text-shadow: 0 10 40 rgba(0,0,0,0.3); */
+}
+#music>#artist{
+    color: rgba(85, 81, 83, 0.425);
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    font-size: 25px;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+#image{
+    width: 250px;
+    height: 250px;
+    margin: auto;
+}
+img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 3px 3px 2px rgba(0,0,0,0.4);
+}
+.music_controller>.fas{
+    color: #000000;
+    font-size: 20px;
+    cursor: pointer;
+    filter: drop-shadow(0 5px 3px 2px rgba(0,0,0,0.4));
+}
+.music_controller{
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    margin-top: 50px;
+}
+.music_controller>#play{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #000;
+    color: #ffffff;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.music_controller>.fas:hover{
+    color: grey;
+}
+.music_controller>#play:hover{
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 1px 2px 0.5px rgba(0,0,0,0.4);
+}
+.anime{
+    animation: rotate 3s linear infinite;
+}
+@keyframes rotate{
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
